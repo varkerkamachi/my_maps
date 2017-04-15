@@ -11,5 +11,17 @@ require 'rails_helper'
 #   end
 # end
 RSpec.describe MapsHelper, type: :helper do
-  pending "add some examples to (or delete) #{__FILE__}"
+  describe "#display_lat_long" do
+  	let(:user) { FactoryGirl.create(:user, email: 'me@mymail.com', password: '123456') }
+  	let(:map) { FactoryGirl.create(:map, name: 'Topo sampler', user: user, lat1: 45, lat2: 90, long1: 100, long2: 150) }
+  	it "returns a string when no argument is passed" do
+  		expect(display_lat_long.class).to eq String
+  	end
+  	it "returns a string when an argument is passed" do
+  		expect(display_lat_long(map).class).to eq String
+  	end
+  	it "returns both sets of coordinates in parentheses, space-separated" do
+  		expect(display_lat_long(map)).to eq "(45.0, 100.0) (90.0, 150.0)"
+  	end
+  end
 end
