@@ -10,7 +10,31 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170415054939) do
+ActiveRecord::Schema.define(version: 20170415083339) do
+
+  create_table "maps", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.bigint "user_id"
+    t.string "name"
+    t.text "description"
+    t.float "lat1", limit: 24
+    t.float "long1", limit: 24
+    t.float "lat2", limit: 24
+    t.float "long2", limit: 24
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_maps_on_user_id"
+  end
+
+  create_table "markers", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.bigint "map_id"
+    t.string "name"
+    t.text "description"
+    t.integer "resident_count"
+    t.string "marker_type"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["map_id"], name: "index_markers_on_map_id"
+  end
 
   create_table "users", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string "email", default: "", null: false
@@ -29,4 +53,6 @@ ActiveRecord::Schema.define(version: 20170415054939) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "maps", "users"
+  add_foreign_key "markers", "maps"
 end
