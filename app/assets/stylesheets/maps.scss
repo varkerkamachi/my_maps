@@ -1,3 +1,19 @@
 // Place all the styles related to the maps controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+#fit {
+  display: block;
+  position: relative;
+  margin: 0px auto;
+  width: 50%;
+  height: 40px;
+  padding: 10px;
+  border: none;
+  border-radius: 3px;
+  font-size: 12px;
+  text-align: center;
+  color: #fff;
+  background: #ee8a65;
+}
+    

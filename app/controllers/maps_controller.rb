@@ -9,15 +9,26 @@ class MapsController < ApplicationController
     @map = find_record( params[:id] )
   end
 
+  def new
+    @map = Map.new
+  end
+
   def create
     @map = Map.new(model_params)
-    model_params['user_id'] = current_user.id
+    #model_params['user_id'] = current_user.id
     @map.save!
+    redirect_to action: :show, id: @map
+  end
+
+  def edit
+    @map = find_record( params[:id] ) rescue nil
   end
 
   def update
-    @map = find_record( params[:id] )
-    @map.update!(model_params)
+    @map = find_record( params[:id] ) rescue nil
+    unless @map.blank?
+      @map.update!(model_params)
+    end
   end
 
   def destroy
@@ -31,6 +42,6 @@ class MapsController < ApplicationController
   end
 
   def model_params
-    params.permit(:name, :user_id, :description, :lat1, :lat2, :long1, :long2)
+    params.require(:map).permit(:name, :user_id, :description, :lat1, :lat2, :long1, :long2)
   end
 end

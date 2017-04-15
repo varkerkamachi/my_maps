@@ -1,0 +1,11 @@
+"development":
+	"mapbox":
+		"token": "sk.eyJ1IjoidmFya2Vya2FtYWNoaSIsImEiOiJjajFqbngwb3cwMmIxMndvMHhob2ZkYzllIn0.tcE6ogGhe8PmFzsDqKao_g"
+
+"staging":
+	"mapbox":
+		"token": "sk.eyJ1IjoidmFya2Vya2FtYWNoaSIsImEiOiJjajFqbngwb3cwMmIxMndvMHhob2ZkYzllIn0.tcE6ogGhe8PmFzsDqKao_g"
+
+"production":
+	"mapbox":
+		"token": "sk.eyJ1IjoidmFya2Vya2FtYWNoaSIsImEiOiJjajFqbngwb3cwMmIxMndvMHhob2ZkYzllIn0.tcE6ogGhe8PmFzsDqKao_g"

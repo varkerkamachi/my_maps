@@ -1,0 +1,33 @@
+- unless @map.blank?
+	.well
+		=form_for( @map ) do |f|
+			= f.hidden_field :user_id, value: current_user.id
+
+			.row.form-row
+				.col-xs-6.col-md-4
+					= f.label :name
+				.col-xs-6.col-md-8
+					= f.text_field :name
+
+			.row.form-row
+				.col-xs-6.col-md-4
+					= f.label :description
+				.col-xs-6.col-md-8
+					= f.text_area :description
+
+			.row.form-row
+				.col-xs-3
+					Coordinates * (required)
+					%br
+				.col-xs-9
+					= f.text_field :lat1, placeholder: 'Western Latitude'
+					= f.text_field :lat2, placeholder: 'Eastern Latitude'
+			.row.form-row
+				.col-xs-3
+				.col-xs-9
+					= f.text_field :long1, placeholder: 'Northern Longitude'
+					= f.text_field :long2, placeholder: 'Southern Longitude'
+
+			.row.form-row
+				.col-xs-12.col-md-offset-6
+					= f.submit "save"

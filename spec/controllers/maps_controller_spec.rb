@@ -53,23 +53,24 @@ RSpec.describe MapsController, type: :controller do
 
 
     describe "POST #create" do
-      it "returns http success" do
-        post :create, params: {name: 'new map', user_id: user.id}
-        expect(response).to have_http_status(:success)
+      it "redirects to the map view" do
+        post :create, params: { map: {name: 'new map', user_id: user.id} }
+        map = Map.last
+        expect(response).to redirect_to action: :show, id: map.id
       end
       it "adds a new map instance" do
-        expect{ post :create, params: {name: 'new map', user_id: user.id} }.to change(Map, :count).by 1
+        expect{ post :create, params: { map: {name: 'new map', user_id: user.id} } }.to change(Map, :count).by 1
       end
     end
 
 
     describe "PUT #update" do
       it "returns http success" do
-        get :update, params: {id: map.id}
+        put :update, params: {id: map.id, map: { user_id: user.id, name: ' plot!' } }
         expect(response).to have_http_status(:success)
       end
       it "updates the map attributes" do
-        put :update, params: { id: map.id, name: 'Updated plot' }
+        put :update, params: { id: map.id, map: { user_id: user.id, name: 'Updated plot' } }
         map.reload
         expect(map.name).to eq('Updated plot')
       end

@@ -1,2 +1,24 @@
-%h1 Maps#show
-%p Find me in app/views/maps/show.html.haml
+%h1 Map Detail
+- if @map.blank?
+	%p
+		There is no map data available - maybe you are using the wrong id, or this url 
+		%strong
+			= "`#{request.url}`"
+		is old or broken?
+
+.row
+	.col-xs-6.col-md-3
+		Name: 
+	.col-xs-6.col-md-8
+		=h @map.try(:name)
+.row
+	.col-xs-6.col-md-3
+		Description: 
+	.col-xs-6.col-md-8
+		=h @map.try(:description)
+.row
+	.col-xs-6.col-md-3
+		Lat/long: 
+	.col-xs-6.col-md-8
+		=display_lat_long(@map)
+

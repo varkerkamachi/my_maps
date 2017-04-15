@@ -12,4 +12,5 @@
 //
 //= require rails-ujs
 //= require turbolinks
+//= require mapbox.js
 //= require_tree .
