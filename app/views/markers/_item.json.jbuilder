@@ -1,0 +1,1 @@
+json.(item, :id, :name, :map_id, :description, :resident_count, :marker_type)

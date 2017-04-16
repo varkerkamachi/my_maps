@@ -1,0 +1,1 @@
+json.partial! 'markers/item', collection: @markers, as: :item

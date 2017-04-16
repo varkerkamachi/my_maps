@@ -1,0 +1,1 @@
+json.partial! 'markers/item', item: @marker
