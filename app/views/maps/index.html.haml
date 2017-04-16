@@ -1,16 +1,18 @@
-%h1 Maps
-- if @maps.blank?
-	%p You have no saved maps yet.
-	%p
-		=link_to "create one now >", new_map_path
-
 .row
-	.col-xs-12
-		=link_to "create a new map >", new_map_path
+  .col-xs-6
+    %h1 My Maps
+
+    =link_to new_map_path do
+      %i.fa.fa-plus-square-o{ aria: { hidden: "true" } }
+      create a new map >
+
+
+- if @maps.blank?
+  %p You have no saved maps yet.
+
 - @maps.each do |m|
-	.row
-		.col-xs-6
-			=h m.try(:name)
-			%br
-			=link_to "view and edit markers >", edit_map_path(m)
+  .row.map_list.clearfix
+    .col-xs-12.col-md-6.clearfix
+      .col-xs-8=h m.try(:name)
+      .col-xs-4=link_to "view and edit >", edit_map_path(m)
 

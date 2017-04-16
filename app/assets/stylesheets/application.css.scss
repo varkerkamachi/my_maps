@@ -1,0 +1,169 @@
+/*
+ * This is a manifest file that'll be compiled into application.css, which will include all the files
+ * listed below.
+ *
+ * Any CSS and SCSS file within this directory, lib/assets/stylesheets, or any plugin's 
+ * vendor/assets/stylesheets directory can be referenced here using a relative path.
+ *
+ * You're free to add application-wide styles to this file and they'll appear at the bottom of the
+ * compiled file so the styles you add here take precedence over styles defined in any other CSS/SCSS
+ * files in this directory. Styles in this file should be added after the last require_* statement.
+ * It is generally better to create a new file per style scope.
+ *
+ *= require_tree .
+ *= require mapbox
+ *= require_self
+ */
+
+@import "font-awesome-sprockets";
+@import "font-awesome";
+
+html,body {
+	height: 100%;
+}
+body {
+  top: 0;
+  bottom: 0;
+  background-color: #f3f4f6 !important;
+  font-family: 'Roboto', 'Helvetica Neue', sans-serif;
+  font-size: 13px;
+  color: #485152;
+}
+body > .container {
+  background: white;
+  position: relative;
+  height: 100%;
+}
+
+/*.clearfix {
+  zoom: 1;
+  height:0;
+  content: '';
+  clear: both;
+  &:after {
+    display: table;
+  }
+}
+*/
+ul,
+ul li {
+  list-style: none outside none;
+}
+
+body a {
+  text-decoration: none;
+}
+body a:visited {
+  text-decoration: none;
+  color: purple;
+}
+body a:visited:hover {
+  text-decoration: none;
+  color: black;
+}
+body a:hover {
+  text-decoration: none;
+  opacity: 0.8;
+}
+body a:active {
+  opacity: 1;
+  text-decoration: none;
+}
+
+/* ------------- NAV -----------------
+------------------------------   ---*/
+.nav-bar {
+  top: 0;
+  left: 0;
+  width: 100%;
+  min-height: 45px;
+  margin-bottom: 20px;
+  border-bottom: 2px solid #f8fafa;
+}
+
+.nav-bar a,
+.nav-bar a:visited,
+.nav-bar a:visited:hover,
+.nav-bar a:hover,
+.nav-bar a:active {
+  text-decoration: none;
+  line-height: 2.45em;
+}
+.nav-bar ul li {
+  display: inline-block;
+  margin: 1px 2px;
+  text-align: center;
+  &:nth-child(2) {
+    float: right;
+    font-size: 11px;
+  }
+  a {
+    display:block;
+    padding: 10px 30px;
+    /*text-shadow: 0 1px 0 #c8cacb;*/
+  }
+}
+
+/* ----------- LOGIN -----------------
+------------------------------   ---*/
+.session-container {
+  text-align: center;
+  width: 425px;
+  margin: 0 auto;
+}
+.session-form {
+  margin: 50px auto;
+  text-align: left;
+  width: 325px;
+  border-radius: 2px 2px;
+  box-shadow: 0 0 2px #a8a8a8;
+  padding: 25px 20px;
+
+  .actions {
+    text-align: right;
+  }
+
+  .checkbox.form-group {
+    margin-left: 20px;
+    checkbox {
+      left: 0;
+    }
+  }
+}
+
+/* ----------- MAPS -----------------
+------------------------------   ---*/
+
+.row.map_list {
+  vertical-align: middle;
+  font-size: 14px;
+  &>div {
+    border-top: 1px dotted #d8e4e4;
+    border-bottom: 2px solid #fafcfc;
+    div[class*='col'] {
+      min-height: 50px;
+      line-height: 3.8em;
+    }
+  }
+  a {
+    text-align: center;
+    font-size: 12px;
+    position: relative;
+    padding: 15px 5px;
+    height: 100%;
+    width: 120px;
+    &:hover {
+      background: #f9f7f1;
+      border-radius: 2px 2px;
+    }
+  }
+}
+
+
+
+
+
+
+
+
+

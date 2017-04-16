@@ -3,31 +3,31 @@
 		=form_for( @map ) do |f|
 			= f.hidden_field :user_id, value: current_user.id
 
-			.row.form-row
+			.row.form-row.form-group
 				.col-xs-6.col-md-4
 					= f.label :name
 				.col-xs-6.col-md-8
-					= f.text_field :name
+					= f.text_field :name, class: 'form-control'
 
-			.row.form-row
+			.row.form-row.form-group
 				.col-xs-6.col-md-4
 					= f.label :description
 				.col-xs-6.col-md-8
-					= f.text_area :description
+					= f.text_area :description, class: 'form-control'
 
-			.row.form-row
-				.col-xs-3
+			.row.form-row.form-group
+				.col-xs-6.col-md-4
 					Coordinates * (required)
 					%br
-				.col-xs-9
-					= f.text_field :lat1, placeholder: 'Western Latitude'
-					= f.text_field :lat2, placeholder: 'Eastern Latitude'
-			.row.form-row
-				.col-xs-3
-				.col-xs-9
-					= f.text_field :long1, placeholder: 'Northern Longitude'
-					= f.text_field :long2, placeholder: 'Southern Longitude'
+				.col-xs-6.col-md-8
+					= f.text_field :lat1, placeholder: 'Northern Latitude', class: 'form-control'
+					= f.text_field :lat2, placeholder: 'Southern Latitude', class: 'form-control'
+			.row.form-row.form-group
+				.col-xs-6.col-md-4
+				.col-xs-6.col-md-8
+					= f.text_field :long1, placeholder: 'Western Longitude', class: 'form-control'
+					= f.text_field :long2, placeholder: 'Eastern Longitude', class: 'form-control'
 
-			.row.form-row
-				.col-xs-12.col-md-offset-6
-					= f.submit "save"
+			.row.form-row.form-group
+				.col-xs-12
+					= f.submit "save", class: 'btn btn-primary submit pull-right'

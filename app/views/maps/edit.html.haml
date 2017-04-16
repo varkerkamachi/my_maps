@@ -1,2 +1,9 @@
 %h1 Edit this map
+%p
+	=link_to map_path(@map) do
+		%i.fa.fa-eye
+		View >
+
 = render partial: 'form'
+
+#map

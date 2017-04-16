@@ -1,5 +1,5 @@
 class MarkersController < ApplicationController
-  before_action :authenticate_user!
+  # before_action :authenticate_user!
   respond_to :json
 
   def index
@@ -16,9 +16,8 @@ class MarkersController < ApplicationController
 
   def create
     @marker = Marker.new(model_params)
-    #model_params['user_id'] = current_user.id
     @marker.save!
-    redirect_to action: :show, id: @marker
+    #redirect_to action: :show, id: @marker
   end
 
   def edit

@@ -16,4 +16,26 @@
   color: #fff;
   background: #ee8a65;
 }
-    
+
+#map { 
+	position:relative;
+  top:90;
+  margin: 0 auto;
+  width:75%;
+  min-height: 325px;
+  border: 3px solid #e8f2f3;
+  border-radius: 3px 3px;
+}
+#info {
+  display: block;
+  position: relative;
+  margin: 0px auto;
+  width: 50%;
+  padding: 10px;
+  border: none;
+  border-radius: 3px;
+  font-size: 12px;
+  text-align: center;
+  color: #222;
+  background: #fff;
+}

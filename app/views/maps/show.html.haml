@@ -1,24 +1,111 @@
 %h1 Map Detail
 - if @map.blank?
-	%p
-		There is no map data available - maybe you are using the wrong id, or this url 
-		%strong
-			= "`#{request.url}`"
-		is old or broken?
+  %p
+    There is no map data available - maybe you are using the wrong id, or this url 
+    %strong
+    = "`#{request.url}`"
+    is old or broken?
+
 
 .row
-	.col-xs-6.col-md-3
-		Name: 
-	.col-xs-6.col-md-8
-		=h @map.try(:name)
-.row
-	.col-xs-6.col-md-3
-		Description: 
-	.col-xs-6.col-md-8
-		=h @map.try(:description)
-.row
-	.col-xs-6.col-md-3
-		Lat/long: 
-	.col-xs-6.col-md-8
-		=display_lat_long(@map)
+  .col-xs-4
+    .col-xs-12.col-md-6
+      Name: 
+    .col-xs-12.col-md-6
+      =h @map.try(:name)
+    .col-xs-12.col-md-6
+      Description: 
+    .col-xs-12.col-md-6
+      =h @map.try(:description)
+    .col-xs-12.col-md-6
+      Lat/long: 
+    .col-xs-12.col-md-6
+      =display_lat_long(@map)
+    .col-xs-12
+      =link_to edit_map_path(@map) do
+        %i.fa.fa-edit
+        Edit >
 
+  .col-xs-8
+    #info
+    #map
+
+
+
+
+
+
+:javascript
+  mapboxgl.accessToken = 'pk.eyJ1IjoidmFya2Vya2FtYWNoaSIsImEiOiJjajFqbnY3YXkwMjBxMnFwam0xcHYzYmp2In0.OM_-3hCtvM4Fwl3ZKA-wFQ';
+  var map = new mapboxgl.Map({
+    container: 'map', // container id
+    style: 'mapbox://styles/mapbox/streets-v10', //stylesheet location
+    center: ["#{@map.lat1}", "#{@map.long2}"], // starting position
+    zoom: 9 // starting zoom
+  });
+
+  map.on('mousemove', function (e) {
+    document.getElementById('info').innerHTML =
+    // e.point is the x, y coordinates of the mousemove event relative
+    // to the top-left corner of the map
+    JSON.stringify(e.point) + '<br />' +
+    // e.lngLat is the longitude, latitude geographical position of the event
+    JSON.stringify(e.lngLat);
+  });
+
+
+  // place existing markers --------
+  // var geojson = "#{@markers}";
+  // // add markers to map
+  // geojson.forEach(function(marker) {
+  //   // create a DOM element for the marker
+  //   var el = document.createElement('div');
+  //   el.className = 'marker';
+  //   el.style.backgroundImage = 'url(/assets/marker.png)';
+  //   el.style.width = '20px';
+  //   el.style.height = '30px';
+
+  //   el.addEventListener('click', function() {
+  //       window.alert("marker.properties.message");
+  //   });
+
+  //   // add marker to map
+  //   new mapboxgl.Marker(el, {offset: [50 / 2, 50 / 2]})
+  //     .setLngLat([41.5, 88.357])
+  //     .addTo(map);
+  // });
+
+
+  // create a new marker ----------------
+  map.on('click', function (e) {
+    new mapboxgl.Popup()
+      .setLngLat(e.lngLat)
+      .setHTML("Marker!")
+      .addTo(map);
+  //addMarker("#{@map.id}", "{\"user_id\": \"#{current_user.id}\", \"marker\": {\"name\": \"Sample Marker\", \"resident_count\": 14, \"marker_type\": \"hotel\"}}");
+  });
+  
+  var popups = document.getElementsByClassName('mapboxgl-popup');
+  popups.forEach(function(popper) {
+    popper.on('click', function(){
+      alert('closing popup!');
+      //addMarker("#{@map.id}", "{\"user_id\": \"#{current_user.id}\", \"marker\": {\"name\": \"Sample Marker\", \"resident_count\": 14, \"marker_type\": \"hotel\"}}");
+    });
+  });
+  // Change the cursor to a pointer when the mouse is over the states layer.
+  map.on('mouseenter', function () {
+      map.getCanvas().style.cursor = 'pointer';
+  });
+
+  // Change it back to a pointer when it leaves.
+  map.on('mouseleave', function () {
+      map.getCanvas().style.cursor = '';
+  });
+
+  // for ajax call to send marker to dB -------------
+  var addMarker = function(map_id, data){
+    var xhr = new XMLHttpRequest();
+    var url = '/maps/' + map_id + '/markers.json';
+    xhr.open('post', url);
+    xhr.send(data);
+  };

@@ -11,5 +11,5 @@ Rails.application.routes.draw do
   end
 
   # possible heads up display/dash ...
-  root to: 'home#index'
+  root to: 'maps#index'
 end

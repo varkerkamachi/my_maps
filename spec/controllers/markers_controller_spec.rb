@@ -57,7 +57,7 @@ RSpec.describe MarkersController, type: :controller do
       it "returns http success" do
         post :create, params: { map_id: map.id, marker: { name: 'First marker', resident_count: 2 } }, format: :json
         @marker = Marker.last
-        expect(response).to redirect_to action: :show, id: @marker.id
+        expect(response.status).to eq 200
       end
       it "adds a marker record" do
         expect{ 

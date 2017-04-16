@@ -7,6 +7,7 @@ class MapsController < ApplicationController
 
   def show
     @map = find_record( params[:id] )
+    @markers = Marker.of_map(@map).to_json
   end
 
   def new
