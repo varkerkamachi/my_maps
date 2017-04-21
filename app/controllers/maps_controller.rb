@@ -30,6 +30,7 @@ class MapsController < ApplicationController
     unless @map.blank?
       @map.update!(model_params)
     end
+    redirect_to action: :show, id: @map
   end
 
   def destroy
